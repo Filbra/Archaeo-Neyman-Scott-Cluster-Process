@@ -1,4 +1,4 @@
-# The application of Neyman Scott cluster process in Landscape Archaeology
+# Spatial Humanities: the application of Neyman-Scott Cluster Process in landscape archaeology
 ---
 This R script code was developed by dr. F. Brandolini (Newcastle University, UK) to accompany the paper: *Costanzo S., Brandolini F., Ahmed H., Zerboni A., Manzo A - Creating the funerary landscape in eastern Sudan*, submitted to Scientific Reports, 20XX.
 

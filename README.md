@@ -1,4 +1,4 @@
-# Archaeo_Neyman_Scott_Process
+# The application of Neyman Scott cluster process in Landscape Archaeology
 ---
 This R script code was developed by dr. F. Brandolini (Newcastle University, UK) to accompany the paper: *Costanzo S., Brandolini F., Ahmed H., Zerboni A., Manzo A - Creating the funerary landscape in eastern Sudan*, submitted to Scientific Reports, 20XX.
 author: "Filippo Brandolini"

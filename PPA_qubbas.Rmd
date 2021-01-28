@@ -595,7 +595,6 @@ write.table(AIC.BIC.weight(q_BIC[1:5]),file="Output/BIC_Models04_weights.txt")
 
 The Schwarz’s Bayesian Information Criterion (BIC) has been employed to compare the competing models and to assess the performance of each covariate. BIC is calculated as the difference between the maximised likelihood of the model and the product of covariates and number of observations (points), therefore a lower BIC corresponds to a better performing model. Following the principle of parsimony, step-wise selection of covariates enables the identification of the combination of variables that minimises BIC values, and the covariates that show less contribution to the performance of the models are excluded during the process (Tab. 1). The remaining covariates were then employed to fit a fourth “hybrid” model that includes the best performing variables (Model 4).
 
----
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -672,11 +671,9 @@ The Schwarz’s Bayesian Information Criterion (BIC) has been employed to compar
   </tr>
 </tbody>
 </table>
----
 
 During the step-wise selection no covariates have been excluded in Model 1, 2, 3 meaning that all the spatial variables show significant correlation with the points. Thus, the hybrid model (Model 4) has been fitted using all the six initially selected covariates and it scored the lowest BIC value (Tab. 1). The coefficients of the hybrid (Model 4) show an inverse correlation of the sites’ locational pattern with Slope, TPI and the distances from metamorphic rocks (Eu. Dist. Meta). Conversely, the coefficients of BIC-selected Model 4 show a direct correlation with CI, Geomorphon and CVA (Tab. 2).
 
----
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -748,7 +745,6 @@ During the step-wise selection no covariates have been excluded in Model 1, 2, 3
   </tr>
 </tbody>
 </table>
----
 
 
 ## Second-order properties
@@ -756,10 +752,10 @@ During the step-wise selection no covariates have been excluded in Model 1, 2, 3
 The interpoint dependence of sites (*H2*) has been assessed applying the **Besag’s L function**. Since spatial interaction tends to occur at small scale, the estimation of L function has been limited to 1.5 km distance (Fig. 6).
 
 ```{r results='hide'}
-Linhom_0 <- envelope(q_mod_0, fun=Lest,
+Lfun_0 <- envelope(q_mod_0, fun=Lest,
                      correction="trans", r=seq(0,1500,50), nsim=NuSim)
 
-Linhom_1 <- envelope(q_mod_4, fun=Lest,
+Lfun_1 <- envelope(q_mod_4, fun=Lest,
                      correction="trans", r=seq(0,1500,50), nsim=NuSim)
 ```
 
@@ -770,12 +766,12 @@ Linhom_1 <- envelope(q_mod_4, fun=Lest,
 png(width=2000,height=1000,units="px",res=150, file="Output/Results of the L function on model 0 and model 4.png")
 par(mar=c(4,4,4,4))
 par(mfrow=c(1,2))
-plot(Linhom_0,main="L function (Mod_0)",xlab="Distance (m)", ylab="L function (r)",
+plot(Lfun_0,main="L function (Mod_0)",xlab="Distance (m)", ylab="L function (r)",
      legend=F)
 legend("topleft",legend=c("Observed","Expected","Confidence Envelope"),lty=c(1,2,NA),
        col=c(1,2,"lightgrey"),lwd=c(1,1,NA),pch=c(NA,NA,15),cex=0.8,pt.cex=1.5,
        y.intersp=1.5)
-plot(Linhom_1,main="L function (Mod_4)",xlab="Distance (m)", ylab="L function(r)",
+plot(Lfun_1,main="L function (Mod_4)",xlab="Distance (m)", ylab="L function(r)",
      legend=F)
 legend("topleft",legend=c("Observed","Expected","Confidence Envelope"),lty=c(1,2,NA),
        col=c(1,2,"lightgrey"),lwd=c(1,1,NA),pch=c(NA,NA,15),cex=0.8,pt.cex=1.5,
@@ -808,7 +804,6 @@ kppp_q_models<-list(model5=q_mod_5,model6=q_mod_6)
 write.table(capture.output(print(kppp_q_models)), file="Output/KPP_Models.txt")
 ```
 
----
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -846,8 +841,6 @@ write.table(capture.output(print(kppp_q_models)), file="Output/KPP_Models.txt")
   </tr>
 </tbody>
 </table>
----
-
 
 The parameters of the two kppm show that the qubbas spatial clusterization is characterised by a very low number of *parent* points and a mean cluster radius of ≈ 475 m (Tab. 3). The *H2* has been addressed applying the L function to Models 6 (Fig. 7).
 
@@ -856,10 +849,10 @@ The parameters of the two kppm show that the qubbas spatial clusterization is ch
 
 # L Function Neyman-Scott Cluster Process
 
-Linhom_2 <- envelope(q_mod_5, fun=Lest,
+Lfun_2 <- envelope(q_mod_5, fun=Lest,
                      correction="trans", r=seq(0,1500,50), nsim=NuSim)
 
-Linhom_3 <- envelope(q_mod_6, fun=Lest,
+Lfun_3 <- envelope(q_mod_6, fun=Lest,
                      correction="trans", r=seq(0,1500,50), nsim=NuSim)
 
 ```
@@ -871,12 +864,12 @@ Linhom_3 <- envelope(q_mod_6, fun=Lest,
 png(width=2000,height=1000,units="px",res=150, file="Output/Results of the L function on model 5 and model 6.png")
 par(mar=c(4,4,4,4))
 par(mfrow=c(1,2))
-plot(Linhom_2,main="L function (Mod_5)",xlab="Distance (m)", ylab="L function (r)",
+plot(Lfun_2,main="L function (Mod_5)",xlab="Distance (m)", ylab="L function (r)",
      legend=F)
 legend("topleft",legend=c("Observed","Expected","Confidence Envelope"),lty=c(1,2,NA),
        col=c(1,2,"lightgrey"),lwd=c(1,1,NA),pch=c(NA,NA,15),cex=0.8,pt.cex=1.5,
        y.intersp=1.5)
-plot(Linhom_3,main="L function (Mod_6)",xlab="Distance (m)", ylab="L function(r)",
+plot(Lfun_3,main="L function (Mod_6)",xlab="Distance (m)", ylab="L function(r)",
      legend=F)
 legend("topleft",legend=c("Observed","Expected","Confidence Envelope"),lty=c(1,2,NA),
        col=c(1,2,"lightgrey"),lwd=c(1,1,NA),pch=c(NA,NA,15),cex=0.8,pt.cex=1.5,

@@ -35,6 +35,10 @@ This research was carried out as part of S.C.’s PhD project within the frame o
 F. Brandolini: filippo.brandolini@newcastle.ac.uk
 S.Costanzo: ste.costanzo92@gmail.com
 
+## Cite as
+
+Filippo Brandolini. (2021, January 4). Spatial Humanities: the application of Neyman-Scott Cluster Process in landscape archaeology (Version 1.0.0). Zenodo. http://doi.org/10.5281/zenodo.4384807
+
 ## References
 
 - Baddeley, A., Turner, R., 2005. spatstat: An R Package for Analyzing Spatial Point Patterns. Journal of Statistical Software, Articles 12, 1–42.

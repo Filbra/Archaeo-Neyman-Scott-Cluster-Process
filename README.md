@@ -1,26 +1,8 @@
 # Archaeo_Neyman_Scott_Process
 ---
-title: 'This R script code was developed by dr. F. Brandolini (Newcastle University, UK) to accompany the paper: *Costanzo S., Brandolini F., Ahmed H., Zerboni A., Manzo A - Creating the funerary landscape in eastern Sudan*, submitted to Scientific Reports, 20XX.'
+This R script code was developed by dr. F. Brandolini (Newcastle University, UK) to accompany the paper: *Costanzo S., Brandolini F., Ahmed H., Zerboni A., Manzo A - Creating the funerary landscape in eastern Sudan*, submitted to Scientific Reports, 20XX.
 author: "Filippo Brandolini"
 date: "26/01/2021"
-output:
-  html_document: default
----
-
-```{r setup, include=FALSE}
-library(yaml)
-library(markdown)
-library(knitr)
-knitr::opts_chunk$set(echo = TRUE)
-```
-
----
-
-NOTES:
-
-The plotted figures and .txt files are saved in the 'Output' folder.
-All the results are based on 999 simulations.
-
 ---
 
 ## Load Libraries
@@ -126,7 +108,7 @@ MBE6 <- density.ppp(q_ppp_KM, sigma = ppl, adjust= 40)
 ```
 
 ```{r echo=FALSE, results='hide'}
-#Plotting the Density maps - Bandwidth Estimation with GGPLOT2
+#Plotting the (Fig.1) Density maps - Bandwidth Estimation with GGPLOT2
 
 K1<- fortify(data.frame(MBE1))
 K2<- fortify(data.frame(MBE2))
@@ -187,14 +169,10 @@ dev.off()
 
 ```
 
-```{r echo=FALSE, out.width="100%", fig.cap="Fig. 1 - *Kernel Density estimated with default, automatic and manually adjusted methods. From the top left: the default KDE calculated with the spatstat function density.ppp.; KDE with sigma automatically estimated with the spatstat function bw.ppl; the KDE estimated with ppl sigma adjusted with values 10, 20, 30 and 40 respectively*", fig.align='center'}
-knitr::include_graphics("Output/Bandwidth Estimation.png")
-```
-
 The best representation of the dynamic intensity of the qubbas in the ROI’s landscape was obtained by a manual adjustment of the *sigma* at *adjust = 30* (Fig.2).
 
 ```{r echo=FALSE, results='hide'}
-##Plotting the KDE of the study area with GGPLOT2
+##Plotting (Fig.2): KDE of the study area with GGPLOT2
 
 KDE <- fortify(data.frame(MBE5))
 
@@ -209,10 +187,6 @@ KDE_map<-ggplot(KDE, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
   coord_equal()
 print(KDE_map)
 dev.off()
-```
-
-```{r echo=FALSE, out.width="50%", fig.cap="*Fig.2 - Kernerl Density Estimation for the study area*", fig.align='center'}
-knitr::include_graphics("Output/KDE.png")
 ```
 
 # Spatial Covariates
@@ -230,18 +204,13 @@ coll_test <- cor(RandomC, method = "pearson")
 ```
 
 ```{r echo=FALSE, results='hide'}
-#Plotting the correlogram with GGPLOT2
+#Plotting (Fig.3): the correlogram with GGPLOT2
 
 png(width=1500,height=1500,res= 200, file="Output/Pearson's correlation test results.png")
 corrplot(coll_test, type="upper", method = "color", order="hclust",tl.cex= 0.7, tl.col = "black", tl.srt = 90,
          addCoef.col = "black", number.font=1, number.cex= 0.6, diag = FALSE)
 dev.off()
 ```
-
-```{r echo=FALSE, out.width="100%", fig.cap="Fig. 3 - *Pearson's correlation test results*", fig.align='center'}
-knitr::include_graphics("Output/Pearson's correlation test results.png")
-```
-
 The topographic and morphometric variables that showed less collinearity (Slope, Northness, Eastness, TPI100, CI and Geomorphon, distance from metamorphic rocks and CVA) were furtherly investigated to evaluate their actual influence on the point process (Fig. 4).
 
 ```{r echo=FALSE, results='hide', warning=FALSE}
@@ -305,7 +274,7 @@ Sites_CVA <- cbind(coord_sites,
 colnames(Sites_CVA)<-c("X","Y","Cv")
 SCVADf <-data.frame(Sites_CVA)
 
-# Plot with ggplotGrob & GGPLOT2
+# Plot (Fig. 4)with ggplotGrob & GGPLOT2
 
 png(width=5000,height=2500, res = 200, file="Output/Histograms Sites vs Variables.png")
 
@@ -421,16 +390,11 @@ grid.arrange(SSl,SSN,SSE,ST100,SCI,SGEO,SM,SCVA,
 
 dev.off()
 ```
-
-```{r echo=FALSE, out.width="100%", fig.cap="Fig. 4 - *Intensity spatial variation according to covariate values*", fig.align='center'}
-knitr::include_graphics("Output/Histograms Sites vs Variables.png")
-```
-
 Both Northness and Eastness were excluded from the parametric estimation of intensity as they show seem to have no influence on the landscape spatial distribution of the qubbas: the points are uniformly oriented in all cardinal directions. The six resulting covariates employed for the PPM are: Slope, Aspect, Topographic Position Index (TPI 100), Convergence Index (CI), Geomorphon, Euclidean distances from outcrops of metamorphic rock, Tumuli’s  Cumulative Viewshed Analysis (CVA) (Fig. 5). 
 
 ```{r echo=FALSE, results='hide', warning=FALSE}
 
-# Plotting selected covariates with GGPLOT2
+# Plotting (Fig. 5), the selected covariates
 
 Slopedf<- data.frame(rasterToPoints(slp))
 colnames(Slopedf) <- c("x","y","value")
@@ -501,10 +465,6 @@ grid.arrange(S,Ti,Ci,G,M,Cv,
                                    c(4,5,6)))
 
 dev.off()
-```
-
-```{r echo=FALSE, out.width="100%", fig.cap="Fig. 5 - *Spatial covariates selected*", fig.align='center'}
-knitr::include_graphics("Output/Spatial covariates selected.png")
 ```
 
 # Part 3: Parametric analysis
@@ -597,7 +557,6 @@ write.table(AIC.BIC.weight(q_BIC[1:5]),file="Output/BIC_Models04_weights.txt")
 
 The Schwarz’s Bayesian Information Criterion (BIC) has been employed to compare the competing models and to assess the performance of each covariate. BIC is calculated as the difference between the maximised likelihood of the model and the product of covariates and number of observations (points), therefore a lower BIC corresponds to a better performing model. Following the principle of parsimony, step-wise selection of covariates enables the identification of the combination of variables that minimises BIC values, and the covariates that show less contribution to the performance of the models are excluded during the process (Tab. 1). The remaining covariates were then employed to fit a fourth “hybrid” model that includes the best performing variables (Model 4).
 
----
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -674,11 +633,9 @@ The Schwarz’s Bayesian Information Criterion (BIC) has been employed to compar
   </tr>
 </tbody>
 </table>
----
 
 During the step-wise selection no covariates have been excluded in Model 1, 2, 3 meaning that all the spatial variables show significant correlation with the points. Thus, the hybrid model (Model 4) has been fitted using all the six initially selected covariates and it scored the lowest BIC value (Tab. 1). The coefficients of the hybrid (Model 4) show an inverse correlation of the sites’ locational pattern with Slope, TPI and the distances from metamorphic rocks (Eu. Dist. Meta). Conversely, the coefficients of BIC-selected Model 4 show a direct correlation with CI, Geomorphon and CVA (Tab. 2).
 
----
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -750,8 +707,6 @@ During the step-wise selection no covariates have been excluded in Model 1, 2, 3
   </tr>
 </tbody>
 </table>
----
-
 
 ## Second-order properties
 
@@ -767,7 +722,7 @@ Linhom_1 <- envelope(q_mod_4, fun=Lest,
 
 ```{r echo=FALSE, results='hide'}
 
-# Plot L functions (mod. 0 & mod 4)
+# Plot (Fig. 6) L functions (mod. 0 & mod 4)
 
 png(width=2000,height=1000,units="px",res=150, file="Output/Results of the L function on model 0 and model 4.png")
 par(mar=c(4,4,4,4))
@@ -784,10 +739,6 @@ legend("topleft",legend=c("Observed","Expected","Confidence Envelope"),lty=c(1,2
        y.intersp=1.5)
 dev.off()
 par(mfrow=c(1,1))
-```
-
-```{r echo=FALSE, out.width="100%", fig.cap="Fig. 6 - *Results of the L function on model 0 and model 4*", fig.align='center'}
-knitr::include_graphics("Output/Results of the L function on model 0 and model 4.png")
 ```
 
 The observed values completely exceed the 95th percentile of simulated values (the highest limit of the confidence envelope) both in the homogeneous (Model 0) and inhomogeneous (Model 4) plots, suggesting an extremely high positive correlation of points that cannot be explained with landscape preferences alone. Because even the KDE highlighted hot-spots in the intensity of the sites and the nearest neighbour (nn) distances evidence that the qubbas are very close placed (min nn distance: 0,72 m; mean nn distance: 23,3 m), the occurrence of a positive dependence between points was tested fitting a cluster process model.
@@ -809,8 +760,6 @@ kppp_q_models<-list(model5=q_mod_5,model6=q_mod_6)
 # Export KPPM summary
 write.table(capture.output(print(kppp_q_models)), file="Output/KPP_Models.txt")
 ```
-
----
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -848,7 +797,6 @@ write.table(capture.output(print(kppp_q_models)), file="Output/KPP_Models.txt")
   </tr>
 </tbody>
 </table>
----
 
 
 The parameters of the two kppm show that the qubbas spatial clusterization is characterised by a very low number of *parent* points and a mean cluster radius of ≈ 475 m (Tab. 3). The *H2* has been addressed applying the L function to Models 6 (Fig. 7).
@@ -868,7 +816,7 @@ Linhom_3 <- envelope(q_mod_6, fun=Lest,
 
 ```{r echo=FALSE, results='hide'}
 
-# Plot L functions (mod. 5 & mod 6)
+# Plot (Fig. 7), L functions (mod. 5 & mod 6)
 
 png(width=2000,height=1000,units="px",res=150, file="Output/Results of the L function on model 5 and model 6.png")
 par(mar=c(4,4,4,4))
@@ -886,11 +834,6 @@ legend("topleft",legend=c("Observed","Expected","Confidence Envelope"),lty=c(1,2
 dev.off()
 par(mfrow=c(1,1))
 ```
-
-```{r echo=FALSE, out.width="100%", fig.cap="Fig. 7 - *Results of the L function on model 5 and model 6*", fig.align='center'}
-knitr::include_graphics("Output/Results of the L function on model 5 and model 6.png")
-```
-
 The results display no deviations of the observed values from the confidence envelope. This suggests that the distribution of qubbas can be accounted for by broad landscape preferences with local tendencies towards tomb clustering.
 
 # Part 3: Residuals values measure
@@ -903,7 +846,7 @@ resv <- residuals.kppm(q_mod_6, drop=T)
 
 ```{r echo=FALSE, results='hide'}
 
-# Plot Smoothed Residual Values
+# Plot Fig. 8, Smoothed Residual Values
 
 Valresv<- fortify(data.frame(Smooth(resv)))
 Valresv[,3]<-Valresv[,3]*10^7
@@ -918,10 +861,6 @@ ValRes <- ggplot(Valresv, aes(x=x, y=y, z=value)) + geom_tile(aes(fill = value))
   coord_fixed()
 print(ValRes)
 dev.off()
-```
-
-```{r echo=FALSE, out.width="50%", fig.cap="Fig. 8 - *Residual values of model 6*", fig.align='center'}
-knitr::include_graphics("Output/Residual values of model 6.png")
 ```
 
 As shown in Fig. 8, the smoothed residual values of Model 6 display an overall uniform level of prediction, except for a limited portion in the centre of the ROI in which the model greatly underestimated the true intensity of sites. The area corresponds to a small outcrop, where the remote survey documented a markedly higher occurrence of qubbas than in the surroundings (∼1/3rd of the dataset). This significant positive autocorrelation (similar values are close to each other) might imply that the location became a pole of attraction of disproportionate size against the others in the region.
@@ -959,7 +898,7 @@ The resulting graph of the cross-type nearest-neighbour function Gij(r) shows th
 
 ```{r echo=FALSE, results='hide'}
 
-# Plot Cross G function
+# Plot (Fig. 9) Cross G function
 
 png(width=2500,height=2000,units="px",res=300, file="Output/The results of the cross G function.png")
 plot(xgf,main="Cross G function",xlab="Distance (m)", ylab="G q,t (r)",
@@ -968,8 +907,4 @@ legend("topleft",legend=c("Observed","Expected","Confidence Envelope"),lty=c(1,2
        col=c(1,2,"lightgrey"),lwd=c(1,1,NA),pch=c(NA,NA,15),cex=0.8,pt.cex=1.5,
        y.intersp=1.5)
 dev.off()
-```
-
-```{r echo=FALSE, out.width="100%", fig.cap="Fig. 9 - *The results of the cross G function*", fig.align='center'}
-knitr::include_graphics("Output/The results of the cross G function.png")
 ```

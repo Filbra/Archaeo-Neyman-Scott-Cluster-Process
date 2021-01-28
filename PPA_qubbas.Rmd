@@ -16,8 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ---
 
 NOTES:
-
-The plotted figures and .txt files are saved in the 'Output' folder.
+The dataset to run this code is available on Zenodo: 10.5281/zenodo.4384807.
 All the results are based on 999 simulations.
 
 ---

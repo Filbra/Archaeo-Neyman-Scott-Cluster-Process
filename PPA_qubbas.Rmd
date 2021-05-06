@@ -111,15 +111,15 @@ The intensity of sites was initially explored through the KDE that was obtained 
 q_ppp_KM<- rescale((as.ppp(coordinates(sites_q), region)), 1000, "km")
 
 # Automatic BE 
-ppl = bw.ppl(q_ppp_KM)
+b = bw.ppl(q_ppp_KM)
 
 # Adjusting BE manually
 MBE1 <- density.ppp(q_ppp_KM)
-MBE2 <- density.ppp(q_ppp_KM, sigma = ppl)
-MBE3 <- density.ppp(q_ppp_KM, sigma = ppl, adjust= 10)
-MBE4 <- density.ppp(q_ppp_KM, sigma = ppl, adjust= 20)
-MBE5 <- density.ppp(q_ppp_KM, sigma = ppl, adjust= 30)
-MBE6 <- density.ppp(q_ppp_KM, sigma = ppl, adjust= 40)
+MBE2 <- density.ppp(q_ppp_KM, sigma = b)
+MBE3 <- density.ppp(q_ppp_KM, sigma = b, adjust= 10)
+MBE4 <- density.ppp(q_ppp_KM, sigma = b, adjust= 20)
+MBE5 <- density.ppp(q_ppp_KM, sigma = b, adjust= 30)
+MBE6 <- density.ppp(q_ppp_KM, sigma = b, adjust= 40)
 ```
 
 ```{r echo=FALSE, results='hide'}
@@ -146,35 +146,35 @@ KD1<-ggplotGrob(ggplot(K1, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
 KD2<-ggplotGrob(ggplot(K2, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
                   scale_fill_distiller(type = "seq",palette = "Spectral", 
                                        guide = "colourbar", aesthetics = "fill")+
-                  labs(title = "Automatic Sigma (ppl)", x = "",y = "")+
+                  labs(title = "Automatic Sigma", x = "",y = "")+
                   coord_fixed())
 KD3<-ggplotGrob(ggplot(K3, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
                   scale_fill_distiller(type = "seq",palette = "Spectral", 
                                        guide = "colourbar", aesthetics = "fill")+
                   geom_point(data = sitesdf, aes(x=coords.x1/1000, y=coords.x2/1000), 
                              shape= 1, size= 0.1, colour= "Black", bg="Black")+
-                  labs(title = "Automatic Sigma (ppl) adjusted: 10", x = "",y = "")+
+                  labs(title = "Automatic Sigma adjusted: 10", x = "",y = "")+
                   coord_fixed())
 KD4<-ggplotGrob(ggplot(K4, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
                   scale_fill_distiller(type = "seq",palette = "Spectral", 
                                        guide = "colourbar", aesthetics = "fill")+
                   geom_point(data = sitesdf, aes(x=coords.x1/1000, y=coords.x2/1000), 
                              shape= 1, size= 0.1, colour= "Black", bg="Black")+
-                  labs(title = "Automatic Sigma (ppl) adjusted: 20", x = "",y = "")+
+                  labs(title = "Automatic Sigma adjusted: 20", x = "",y = "")+
                   coord_fixed())
 KD5<-ggplotGrob(ggplot(K5, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
                   scale_fill_distiller(type = "seq",palette = "Spectral", 
                                        guide = "colourbar", aesthetics = "fill")+
                   geom_point(data = sitesdf, aes(x=coords.x1/1000, y=coords.x2/1000), 
                              shape= 1, size= 0.1, colour= "Black", bg="Black")+
-                  labs(title = "Automatic Sigma (ppl) adjusted: 30", x = "",y = "")+
+                  labs(title = "Automatic Sigma adjusted: 30", x = "",y = "")+
                   coord_fixed())
 KD6<-ggplotGrob(ggplot(K6, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
                   scale_fill_distiller(type = "seq",palette = "Spectral", 
                                        guide = "colourbar", aesthetics = "fill")+
                   geom_point(data = sitesdf, aes(x=coords.x1/1000, y=coords.x2/1000), 
                              shape= 1, size= 0.1, colour= "Black", bg="Black")+
-                  labs(title = "Automatic Sigma (ppl) adjusted: 40", x = "",y = "")+
+                  labs(title = "Automatic Sigma adjusted: 40", x = "",y = "")+
                   coord_fixed())
 grid.arrange(KD1,KD2,KD3,KD4,KD5,KD6,
              widths = c(1,1,1),
@@ -202,7 +202,7 @@ KDE_map<-ggplot(KDE, aes(x=x, y=y)) + geom_tile(aes(fill = value))+
                        guide = "colourbar", aesthetics = "fill")+
   geom_point(data = sitesdf, aes(x=coords.x1/1000, y=coords.x2/1000), 
              shape= 1, size= 0.1, colour= "Black", bg="Black")+
-  labs(title = "Kernel Density Analysis Sigma via ppl (adjusted)", adj= 1, x = "",y = "")+
+  labs(title = "Kernel Density Analysis Sigma via bw.ppl (adjusted)", adj= 1, x = "",y = "")+
   coord_equal()
 print(KDE_map)
 dev.off()

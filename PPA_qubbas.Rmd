@@ -51,13 +51,12 @@ slp <- raster("GeoTiff/Slope.tif")
 asp <- raster("GeoTiff/Aspect.tif")
 
 # Aspect Northness (ns) & Eastness (es) [rad]
-writeRaster((cos(asp)* pi / 180),"GeoTiff/Northness.tif", format="GTiff",
-            overwrite=TRUE)
-ns <- raster("GeoTiff/Northness.tif")
 
-writeRaster((sin(asp)* pi / 180),"GeoTiff/Eastness.tif", format="GTiff",
+ns <- writeRaster((cos(asp)* pi / 180),"GeoTiff/Northness.tif", format="GTiff",
             overwrite=TRUE)
-es <- raster("GeoTiff/Eastness.tif")
+
+es <- writeRaster((sin(asp)* pi / 180),"GeoTiff/Eastness.tif", format="GTiff",
+            overwrite=TRUE)
 
 # Topographic Position Index (TPI)
 TPI_100<- raster("GeoTiff/TPI100.tif")

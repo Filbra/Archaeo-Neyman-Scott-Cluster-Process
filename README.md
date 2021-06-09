@@ -21,7 +21,7 @@ for statistical computing R (R Core Team, 2019) through the visual interface of 
 ## List of files 
 R_script_code named "PPA_qubbas" in .rmd and .html formats.
 
-Dataset available on Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4576163.svg)](https://doi.org/10.5281/zenodo.4576163)
+Dataset available on Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4384806.svg)](https://doi.org/10.5281/zenodo.4384806)
 
 ## Acknowledgements
 This research was carried out as part of S.C.’s PhD project within the frame of the IAEES - Italian Archaeological Expedition to the Eastern Sudan. The IAEES is funded by the Università di Napoli “L’Orientale”, ISMEO - Associazione Internazionale di Studi sul Mediterraneo e l’Oriente, and the Italian Ministry of Foreign Affairs. The Expedition is also generously supported by the Regional Government of the Kassala State. Additional financial support was provided by Italian Ministry of Education, University, and Research (MIUR) through the project ‘Dipartimenti di Eccellenza 2018–2022’ (WP4—Risorse del Patrimonio Culturale) awarded to the Dipartimento di Scienze della Terra ‘A. Desio’ University of Milan, Italy). All authors wish to thank the archaeological authorities of the Republic of the Sudan, the National Corporation for Antiquities and Museums, the Ministry division in Kassala, their welcoming staff and the skilled drivers who made the field surveys possible.  Finally, the authors thank Prof. Francesco Carrer (Newcastle University, Newcastle upon Tyne, UK) for his comments on the R script code, and Prof. Isaac Ullah (San Diego State University, San Diego, CA - USA) for his suggestions on the use of the Cumulative Viewshed Analysis Grass GIS module.
@@ -39,7 +39,7 @@ S.Costanzo: ste.costanzo92@gmail.com
 
 ## Cite as
 
-Filippo Brandolini. (2021, January 4). Spatial Humanities: the application of Neyman-Scott Cluster Process in landscape archaeology (Version 1.0.0). Zenodo. http://doi.org/10.5281/zenodo.4384807
+Filippo Brandolini. (2021, January 4). Spatial Humanities: the application of Neyman-Scott Cluster Process in landscape archaeology (Version 1.0.2). Zenodo. http://doi.org/10.5281/zenodo.4384806
 
 ## References
 

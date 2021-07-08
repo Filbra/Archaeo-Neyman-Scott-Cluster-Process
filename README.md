@@ -1,6 +1,6 @@
 # Spatial Humanities: the application of Neyman-Scott Cluster Process in landscape archaeology
 ---
-This R script code was developed by dr. F. Brandolini (Newcastle University, UK) to accompany the paper: *Costanzo S., Brandolini F., Ahmed H., Zerboni A., Manzo A - Creating the funerary landscape in eastern Sudan*, submitted to PlosOne, 20XX.
+This R script code was developed by dr. F. Brandolini (Newcastle University, UK) to accompany the paper: *Costanzo S., Brandolini F., Ahmed H., Zerboni A., Manzo A - Creating the funerary landscape in eastern Sudan*, PLOS ONE 16(7): e0253511. https://doi.org/10.1371/journal.pone.0253511
 
 The original dataset was compiled by S. Costanzo (Università di Napoli “L’Orientale”, Italy) as part of his PhD project within the frame of the IAEES - Italian Archaeological Expedition to the Eastern Sudan (Università di Napoli “L’Orientale”, Italy). The raster products (GeoTiff) were elaborated by dr. F. Brandolini with GRASS GIS and SAGA GIS software. This research was supervised by prof. Andrea Zerboni (Università degli Studi di Milano, Italy) and prof. Andrea Manzo (Università di Napoli “L’Orientale”, Italy).
 
